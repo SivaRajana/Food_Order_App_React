@@ -9,7 +9,7 @@ const CartContextProvider = (props) => {
         items: [],
         addItem: addItemHandler,
         deleteItem: delteItemHandler,
-        amount: 0
+        amount: 5
     }
 
     return <cartContext.Provider value={helperContexValue}>{props.children}</cartContext.Provider>
