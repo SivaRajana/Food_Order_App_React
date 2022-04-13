@@ -7,25 +7,25 @@ const DUMMY_MEALS = [
         id: 'm1',
         name: 'Hyderabad Biryaani',
         description: 'Finest fish and veggies',
-        price: 22.99,
+        price: 200,
     },
     {
         id: 'm2',
         name: 'Bengal Hilsa ',
         description: 'A german specialty!',
-        price: 16.5,
+        price: 340,
     },
     {
         id: 'm3',
         name: 'Maharasthra Vada Pav',
         description: 'American, raw, meaty',
-        price: 12.99,
+        price: 130,
     },
     {
         id: 'm4',
         name: 'Amritsari Kulcha',
         description: 'Healthy...and green...',
-        price: 18.99,
+        price: 300,
     },
 ];
 
