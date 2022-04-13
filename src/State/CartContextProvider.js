@@ -8,9 +8,21 @@ const defaultState = {
 
 const cartContextReducer = (prevState, action) => {
     if (action.type === 'ADD') {
-        console.log(prevState);
-        const updatedItems = prevState.items.concat(action.item);
+        // console.log(prevState);
+        let updatedItems;
         const updatedtotalAmount = prevState.totalAmount + action.item.price * action.item.amount;
+
+        const newItemIndex = prevState.items.findIndex((item) => action.item.id === item.id);
+        console.log(action.item.id, newItemIndex);
+        const newItem = prevState.items[newItemIndex];
+        if (newItem) {
+            const updatedItem = { ...newItem, amount: newItem.amount + action.item.amount };
+            updatedItems = [...prevState.items]
+            updatedItems[newItemIndex] = updatedItem;
+        }
+        else {
+            updatedItems = prevState.items.concat(action.item);
+        }
         return (
             {
                 items: updatedItems,
@@ -19,7 +31,28 @@ const cartContextReducer = (prevState, action) => {
         );
     }
     if (action.type === 'REMOVE') {
-
+        let updatedItems;
+        const indexOfRemovedItem = prevState.items.findIndex((item) => item.id === action.id);
+        const updatedAmount = prevState.totalAmount - prevState.items[indexOfRemovedItem].price;
+        let updatedItem = prevState.items[indexOfRemovedItem];
+        if (updatedItem.amount > 1) {
+            updatedItem = { ...updatedItem, amount: updatedItem.amount - 1 }
+            updatedItems = [...prevState.items];
+            updatedItems[indexOfRemovedItem] = updatedItem;
+            return (
+                {
+                    items: updatedItems,
+                    totalAmount: updatedAmount
+                }
+            )
+        }
+        if (updatedItem.amount === 1) {
+            let updatedItems = prevState.items.filter(item => item.id !== action.id);
+            return ({
+                items: updatedItems,
+                totalAmount: updatedAmount
+            })
+        }
     }
     return defaultState;
 }
