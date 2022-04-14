@@ -30,7 +30,7 @@ const Cart = props => {
     })}</ul>);
 
     const totalAmount = cartContextObj.totalAmount.toFixed(2);
-    const cartHasItems = cartContextObj.items.length > 1;
+    const cartHasItems = cartContextObj.items.length >= 1;
 
     return (
         <Model onHideCart={props.onHideCart}>
